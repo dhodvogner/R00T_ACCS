@@ -3,7 +3,7 @@
     python tools/make_page.py --repo OWNER/NAME [--youtube https://youtu.be/...] [--size "87 MB"]
 
 * the exe size defaults to dist/R00T_ACCS.exe if it exists
-* --youtube adds a link to the video above the screenshots
+* --youtube adds a link to the video under the screenshots
 """
 import argparse
 import html
@@ -30,7 +30,7 @@ if not version:
 
 yt = ""
 if a.youtube:
-    yt = f'<p class="hint">&#9654; <a href="{html.escape(a.youtube)}" rel="noopener">watch the video</a></p>'
+    yt = f'<p class="vid"><a href="{html.escape(a.youtube)}" rel="noopener">&#9654; watch the video on youtube</a></p>'
 
 page = open(os.path.join(ROOT, "tools", "page_template.html"), encoding="utf-8").read()
 for k, v in {"{{REPO}}": a.repo, "{{OWNER}}": owner, "{{NAME}}": name, "{{EXESIZE}}": size,

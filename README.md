@@ -4,7 +4,7 @@
 
 A real-time, full-screen synthwave-gets-hacked demo. Every pixel is computed live on your GPU.
 
-**[Download R00T_ACCS.exe](https://github.com/dhodvogner/R00T_ACCS/releases/latest/download/R00T_ACCS.exe)** &middot; [download page](https://dhodvogner.github.io/R00T_ACCS/)
+**[Download R00T_ACCS.exe](https://github.com/dhodvogner/R00T_ACCS/releases/latest/download/R00T_ACCS.exe)** &middot; [download page](https://dhodvogner.github.io/R00T_ACCS/) &middot; [watch the video](https://youtu.be/0jqMR4Wr1-g)
 
 ```text
 
@@ -51,7 +51,7 @@ A real-time, full-screen synthwave-gets-hacked demo. Every pixel is computed liv
 ║ TRACK.........: "We Own the Night"  (3:00, 180 BPM)                        ║
 ║ FORMAT........: 1 x EXE.  no installer. no serial. no keygen. no nag.      ║
 ║ SIZE..........: 87.0 MB                                                    ║
-║ VIDEO.........: coming soon                                                ║
+║ VIDEO.........: youtu.be/0jqMR4Wr1-g                                       ║
 ║ SOURCE........: github.com/dhodvogner/R00T_ACCS                            ║
 ║ LICENSE.......: MIT (code) . music & art (c) hodiloves                     ║
 ║ PROTECTION....: none.  every pixel is computed live on YOUR gpu            ║
