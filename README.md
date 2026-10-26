@@ -4,7 +4,7 @@
 
 A real-time, full-screen synthwave-gets-hacked demo. Every pixel is computed live on your GPU.
 
-**[Download R00T_ACCS.exe](https://github.com/OWNER/R00T_ACCS/releases/latest/download/R00T_ACCS.exe)** &middot; [download page](https://OWNER.github.io/R00T_ACCS/)
+**[Download R00T_ACCS.exe](https://github.com/dhodvogner/R00T_ACCS/releases/latest/download/R00T_ACCS.exe)** &middot; [download page](https://dhodvogner.github.io/R00T_ACCS/)
 
 ```text
 
@@ -52,7 +52,7 @@ A real-time, full-screen synthwave-gets-hacked demo. Every pixel is computed liv
 ║ FORMAT........: 1 x EXE.  no installer. no serial. no keygen. no nag.      ║
 ║ SIZE..........: 87.0 MB                                                    ║
 ║ VIDEO.........: coming soon                                                ║
-║ SOURCE........: github.com/OWNER/R00T_ACCS                                 ║
+║ SOURCE........: github.com/dhodvogner/R00T_ACCS                            ║
 ║ LICENSE.......: MIT (code) . music & art (c) hodiloves                     ║
 ║ PROTECTION....: none.  every pixel is computed live on YOUR gpu            ║
 ║ RATING........: 11/10  would get hacked again                              ║
