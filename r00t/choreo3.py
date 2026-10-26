@@ -9,6 +9,7 @@ from .choreo2 import (cl, ramp, sstep, lerp, hash01, PINK, CYAN, VIOLET, ORANGE,
                            T_INTRO_B, T_PRE, T_BLACK, T_D1, T_MID, T_RISER, T_BLACK2, T_D2, T_OUT, T_END, T_CRT)
 from .features import FPS
 from .canvas import V
+from . import typelayer as TL
 
 # ------------------------------------------------------------------ looks timeline
 _d1 = [T_D1 + k * (T_MID - T_D1) / 10.0 for k in range(11)]
@@ -159,8 +160,11 @@ def wall(X, alpha=0.5, th=340):
                                     flip=bool((i + j) % 2), time=t, tint=(0.9, 1.0, 1.1), ascii_=0.0))
 
 
-def bigtext(X, lines, t0, t1, color=(255, 40, 70), cy=830, size_cap=380):
-    X["cm"]["post"].append(("bigtext", dict(lines=lines, t0=t0, t1=t1, color=color, cy=cy, cap=size_cap, kick=X["kick"], snare=X["snare"])))
+def bigtext(X, lines, t0, t1, color=(255, 40, 70), cy=830, size_cap=380, label=None):
+    p = dict(lines=lines, t0=t0, t1=t1, color=color, cy=cy, cap=size_cap, kick=X["kick"], snare=X["snare"])
+    if label:
+        p["label"] = label
+    X["cm"]["post"].append(("bigtext", p))
 
 
 def popups3(X, rate=1.0):
@@ -213,7 +217,7 @@ def look_access(X):
     shown = lt < 4.4
     if shown:
         a = 1.0 if lt < 3.8 else 1.0 - ramp(lt, 3.8, 4.4)
-        bigtext(X, ["ACCESS", "GRANTED"], D1_B[0], D1_B[0] + 4.4, cy=840, size_cap=400)
+        pass                                        # the ACCESS GRANTED block comes from TL.BLOCKS (see frame_state)
     g = sstep(ramp(lt, 0.9, 3.8))
     reaper(X, alpha=0.98 * g, dis=1.0 - sstep(ramp(lt, 0.9, 3.6)), h=1500, cy=930, tint=(1.35, 1.35, 1.35))
     X["acc"] = RED
@@ -383,7 +387,7 @@ def look_override(X):
                u_kzoom=1.0 + 0.5 * math.exp(-lt / 0.35), u_blr=0.12 * ramp(lt, 4.5, 6.0))
     fb.update(u_decay=0.45, u_fzoom=1.01, u_fmix=0.6)
     if lt < 4.4:
-        bigtext(X, ["SYSTEM", "OVERRIDE"], T_D2, T_D2 + 4.4, color=(0, 235, 255), cy=840, size_cap=400)
+        pass                                        # the SYSTEM OVERRIDE block comes from TL.BLOCKS (see frame_state)
     g = sstep(ramp(lt, 0.9, 3.8))
     video(X, "mid", "dance_skel", V.cx, 960, 1750, alpha=0.98 * g, dissolve=1.0 - sstep(ramp(lt, 0.9, 3.6)), tint=(1.2, 1.3, 1.45), dsz=14, split=0.004 + 0.01 * X["snare"])
     X["acc"] = CYAN
@@ -656,8 +660,18 @@ def frame_state(i, t=None):
         if t < T_OUT + 0.4:
             po["u_flash"] = 0.8 * math.exp(-(t - T_OUT) / 0.1)
             po["u_pix"] = 0.8 * math.exp(-(t - T_OUT) / 0.12)
-        po["u_fade"] = 1.0 - sstep(ramp(t, 175.5, 179.8))       # the moon stays; the picture fades out slowly
+        # the TV switches off: the picture dims, snaps back at T_CRT (a white flash), then collapses to a line and a dot
+        if t < T_CRT:
+            po["u_fade"] = lerp(1.0, 0.55, ramp(t, 175.5, T_CRT))
+        else:
+            po["u_fade"] = 1.0
+            po["u_crt"] = ramp(t, T_CRT, T_END - 0.02)
+            po["u_flash"] = 0.9 * math.exp(-(t - T_CRT) / 0.08)
 
+    if po["u_black"] < 0.5:
+        for b in TL.BLOCKS:                      # ACCESS GRANTED / SYSTEM OVERRIDE (timings from assets/type_events.json)
+            if b["t0"] - 0.02 <= t <= b["t1"] + 0.1:
+                bigtext(X, b["lines"], b["t0"], b["t1"], color=tuple(b["color"]), cy=b["cy"], label=b.get("label"))
     po["u_fade"] = po["u_fade"] * sstep(ramp(t, 0.0, 3.2))
     if t > T_END - 0.05:
         po["u_fade"] = 0.0

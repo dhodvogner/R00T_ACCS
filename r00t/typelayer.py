@@ -1,12 +1,15 @@
 """Brutalist type layer: typography as a visual layer (invert masks, knock-out windows, giant cropped / bleeding type),
 driven by the real drum hits rather than by the lyric sheet."""
 import bisect
+import json
 import math
+import os
 import re
 
 import numpy as np
 
 from .choreo2 import (CAPTIONS, CHOPS, KICK_T, KICK_S, SNARE_T, SNARE_S, T_D1, T_MID, T_D2, T_OUT, T_PRE, hash01, cl)
+from .paths import asset
 from .typo import brutal_sprite
 
 from .canvas import V
@@ -139,6 +142,30 @@ build_captions()
 build_chops()
 build_hits()
 build_script_56_65()
+
+# flat full-bleed "ACCESS GRANTED" / "SYSTEM OVERRIDE" blocks (drawn by choreo3 through draw_bigtext)
+BLOCKS = [dict(lines=["ACCESS", "GRANTED"], t0=T_D1, t1=T_D1 + 4.4, color=(255, 40, 70), cy=840),
+          dict(lines=["SYSTEM", "OVERRIDE"], t0=T_D2, t1=T_D2 + 4.4, color=(0, 235, 255), cy=840)]
+
+
+def _load_fixed():
+    """assets/type_events.json is the hand-fixed timing of every type event (exported from the editor project);
+    when present it replaces the procedurally generated list above."""
+    path = asset("type_events.json")
+    if not os.path.exists(path):
+        return
+    with open(path, encoding="utf-8") as f:
+        d = json.load(f)
+    EVENTS[:] = []
+    for e in d["events"]:
+        e = dict(e)
+        e["color"] = tuple(e.get("color", (255, 255, 255)))
+        e.setdefault("rev", [e["t0"]] * len(e["words"]))
+        EVENTS.append(e)
+    BLOCKS[:] = [dict(b, color=tuple(b["color"])) for b in d.get("blocks", [])]
+
+
+_load_fixed()
 EVENTS.sort(key=lambda e: e["t0"])
 _T0 = [e["t0"] for e in EVENTS]
 _MAXLEN = max(e["t1"] - e["t0"] for e in EVENTS)
