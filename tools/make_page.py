@@ -33,7 +33,12 @@ if a.youtube:
     yt = f'<p class="vid"><a href="{html.escape(a.youtube)}" rel="noopener">&#9654; watch the video on youtube</a></p>'
 
 page = open(os.path.join(ROOT, "tools", "page_template.html"), encoding="utf-8").read()
-for k, v in {"{{REPO}}": a.repo, "{{OWNER}}": owner, "{{NAME}}": name, "{{EXESIZE}}": size,
+def art(name):
+    t = open(os.path.join(ROOT, "tools", name), encoding="utf-8").read().rstrip()
+    return html.escape(t)
+
+
+for k, v in {"{{SKULL}}": art("ascii_skull.txt"), "{{REAPER}}": art("ascii_reaper.txt"), "{{REPO}}": a.repo, "{{OWNER}}": owner, "{{NAME}}": name, "{{EXESIZE}}": size,
              "{{VERSION}}": version, "{{YOUTUBE_BLOCK}}": yt}.items():
     page = page.replace(k, v)
 os.makedirs(os.path.join(ROOT, "docs"), exist_ok=True)

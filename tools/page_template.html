@@ -12,18 +12,19 @@
 <meta name="theme-color" content="#0b0618">
 <link rel="icon" href="favicon.ico">
 <style>
-:root{--bg:#0b0618;--cyan:#00e5ff;--pink:#ff2d95;--yellow:#ffe14a;--violet:#8a2bff;--dim:#7d8aa8}
+:root{--bg:#0b0618;--cyan:#00e5ff;--pink:#ff2d95;--yellow:#ffe14a;--violet:#8a2bff;--dim:#7d8aa8;
+  --ink:#e8e8e4;--mut:#8d8d88;--line:#33332f;--pbg:#09090b;--acc:#ff2d95;
+  --head:"Bahnschrift","Arial Narrow","Helvetica Neue",Arial,sans-serif;--mono:"Cascadia Mono",Consolas,"SFMono-Regular",Menlo,"Courier New",monospace}
 *{box-sizing:border-box}
 html{background:var(--bg)}
-body{margin:0;color:var(--cyan);font:16px/1.5 "Cascadia Mono",Consolas,"Courier New",monospace;min-height:100vh}
+body{margin:0;color:var(--cyan);font:16px/1.5 var(--mono);min-height:100vh}
 #bg{position:fixed;inset:0;width:100%;height:100%;z-index:-2}
 .scan{position:fixed;inset:0;z-index:50;pointer-events:none;
-  background:repeating-linear-gradient(to bottom,rgba(0,0,0,.28) 0,rgba(0,0,0,.28) 1px,transparent 1px,transparent 3px),
-  radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.55) 100%)}
-.wrap{max-width:920px;margin:0 auto;padding:28px 16px 90px}
-a{color:var(--yellow)}
+  background:repeating-linear-gradient(to bottom,rgba(0,0,0,.22) 0,rgba(0,0,0,.22) 1px,transparent 1px,transparent 3px),
+  radial-gradient(ellipse at center,transparent 60%,rgba(0,0,0,.5) 100%)}
+.wrap{max-width:920px;margin:0 auto;padding:28px 16px 0}
+.rule{color:var(--violet);overflow:hidden;white-space:nowrap;text-align:center}
 pre{margin:0}
-
 /* logo */
 .logo{margin:6px 0 0;text-align:center;font-weight:900;font-size:clamp(46px,13.5vw,132px);line-height:1.05;letter-spacing:.06em;position:relative;
   color:#fff;text-shadow:0 0 14px var(--pink),0 0 46px var(--violet),5px 5px 0 var(--pink);animation:flick 6s infinite}
@@ -41,56 +42,59 @@ pre{margin:0}
   background:linear-gradient(90deg,transparent,rgba(138,43,255,.18),transparent)}
 #scroller span{position:absolute;top:10px;left:0;font-weight:700;font-size:26px;white-space:pre;text-shadow:0 0 8px currentColor}
 
-/* buttons */
-.cta{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;margin:34px 0 10px}
-.btn{display:block;text-decoration:none;text-align:center;padding:16px 26px 14px;min-width:290px;border:4px double;letter-spacing:.14em;text-transform:uppercase;
-  font-weight:700;font-size:17px;position:relative;transition:transform .08s}
-.btn small{display:block;font-weight:400;font-size:12px;letter-spacing:.12em;opacity:.75;margin-top:4px;text-transform:none}
-.btn.dl{color:var(--bg);background:var(--pink);border-color:var(--yellow);box-shadow:0 0 28px rgba(255,45,149,.6)}
-.btn.af{color:var(--yellow);background:rgba(11,6,24,.7);border-color:var(--yellow);box-shadow:0 0 18px rgba(255,225,74,.25)}
-.btn:hover,.btn:focus-visible{transform:translate(-2px,-2px);outline:none;animation:glitch .35s steps(2) 2}
-.btn.dl:hover{background:var(--cyan);box-shadow:0 0 34px rgba(0,229,255,.7)}
-.btn.af:hover{background:var(--yellow);color:var(--bg)}
-@keyframes glitch{0%{text-shadow:3px 0 var(--cyan),-3px 0 var(--pink)}50%{text-shadow:-3px 0 var(--cyan),3px 0 var(--pink);clip-path:inset(10% 0 40% 0)}100%{text-shadow:none;clip-path:none}}
-.hint{text-align:center;color:var(--dim);font-size:13px}
-@media(max-width:560px){.sub{letter-spacing:.22em;font-size:12px}.tag{font-size:14px}}
 
-/* boxes */
-.box{border:3px double var(--yellow);margin:34px 0;background:rgba(11,6,24,.72)}
-.box>h2{margin:0;padding:3px 8px;text-align:center;font-size:14px;font-weight:400;letter-spacing:.5em;color:var(--cyan);
-  background:repeating-linear-gradient(90deg,rgba(138,43,255,.5) 0 2px,transparent 2px 4px);border-bottom:3px double var(--yellow)}
-.box .in{padding:14px 18px}
-.row{display:flex;gap:6px;margin:1px 0}
-.row .k{flex:none;min-width:130px;color:var(--cyan)}
-.row .d{flex:1;border-bottom:1px dotted #3a2d66;margin-bottom:7px;min-width:8px}
-.row .v{flex:none;max-width:62%;text-align:right;color:#e8ecff}
-@media(max-width:560px){.row{flex-wrap:wrap}.row .d{display:none}.row .v{max-width:100%;text-align:left;flex-basis:100%}}
-.pink{color:var(--pink)}.dim{color:var(--dim)}.ye{color:var(--yellow)}
-
-/* gallery */
-.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:26px 0}
-.gal figure{margin:0;border:2px solid #2d2058;background:#000}
-.vid{text-align:center;margin:-6px 0 30px}.vid a{display:inline-block;padding:9px 20px;border:2px solid var(--cyan);color:var(--cyan);text-decoration:none;letter-spacing:.12em;text-transform:uppercase;font-size:14px;background:rgba(11,6,24,.7)}.vid a:hover,.vid a:focus-visible{background:var(--cyan);color:var(--bg);outline:none}
-.gal figcaption{padding:3px 8px;font-size:12px;color:var(--dim);background:#150d2e;display:flex;justify-content:space-between}
-.gal img{display:block;width:100%;height:auto}
-
-details{margin:8px 0;border-bottom:1px dotted #3a2d66;padding-bottom:6px}
-summary{cursor:pointer;color:var(--yellow);padding:4px 0}
-summary:hover{color:var(--pink)}
-details p{margin:6px 0 4px;color:#cfd6ee}
-kbd{border:1px solid var(--violet);padding:0 6px;color:var(--cyan);background:#150d2e}
-code{color:var(--pink)}
-footer{text-align:center;color:var(--dim);font-size:13px;margin-top:40px}
-footer a{margin:0 8px;text-decoration:none;border-bottom:1px solid var(--violet)}
-footer a:hover{color:var(--pink);border-color:var(--pink)}
-.rule{color:var(--violet);overflow:hidden;white-space:nowrap;text-align:center;letter-spacing:0}
-@media (prefers-reduced-motion:reduce){.logo,.logo::before,.logo::after,.btn:hover,.btn:focus-visible{animation:none}}
+/* ---------- below the header: monochrome brutalist ---------- */
+.panel{background:var(--pbg);border-top:4px solid var(--ink);margin-top:34px;color:var(--ink)}
+.panel .in{max-width:1080px;margin:0 auto;padding:0 22px}
+.panel a{color:inherit}
+.sec{padding:34px 0 42px;border-bottom:1px solid var(--line)}
+.sh{display:flex;justify-content:space-between;gap:12px;font:12px var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--mut);border-bottom:1px solid var(--line);padding:0 0 12px;margin:0 0 22px}
+.grid{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center}
+.kick{font:12px var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--mut);margin:0 0 14px}
+.big{font:800 clamp(46px,8.4vw,104px)/.9 var(--head);letter-spacing:-.025em;text-transform:uppercase;margin:0 0 22px;color:#f4f4f0}
+.lede{font:16px/1.7 var(--mono);color:#c9c9c4;max-width:46ch;margin:0 0 28px}
+.cta{display:flex;flex-wrap:wrap;gap:14px;margin:0 0 12px}
+.btn{display:block;min-width:250px;padding:15px 52px 13px 20px;border:2px solid var(--ink);color:var(--ink);text-decoration:none;font:800 16px var(--head);letter-spacing:.1em;text-transform:uppercase;position:relative;transition:transform .08s,box-shadow .08s}
+.btn small{display:block;font:400 11px var(--mono);letter-spacing:.06em;text-transform:none;color:var(--mut);margin-top:4px}
+.btn::after{content:"\2192";position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:20px}
+.btn.dl{background:var(--ink);color:#09090b}.btn.dl small{color:#55554f}
+.btn:hover,.btn:focus-visible{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--acc);outline:none}
+.hint{font:12px var(--mono);color:var(--mut);margin:12px 0 0}
+pre.ascii{font:11px/1 var(--mono);letter-spacing:0;white-space:pre;color:#d6d6d0;overflow:hidden;user-select:none}
+.skull{font-size:clamp(6px,1.22vw,11.5px)}.reaper{font-size:clamp(6px,1.3vw,12.5px)}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.gal figure{margin:0;border:1px solid var(--line);background:#000}
+.gal img{display:block;width:100%;height:auto;filter:grayscale(1) contrast(1.1) brightness(.92);transition:filter .3s}
+.gal figure:hover img{filter:none}
+.gal figcaption{display:flex;justify-content:space-between;padding:6px 10px;font:11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mut);border-top:1px solid var(--line)}
+.vid{margin:22px 0 0}
+.vid a{display:inline-block;padding:11px 18px;border:2px solid var(--ink);text-decoration:none;font:700 13px var(--head);letter-spacing:.14em;text-transform:uppercase;transition:transform .08s,box-shadow .08s}
+.vid a:hover,.vid a:focus-visible{transform:translate(-3px,-3px);box-shadow:5px 5px 0 var(--acc);outline:none}
+.spec{display:grid;grid-template-columns:210px 1fr;margin:0;border-top:1px solid var(--line)}
+.spec dt,.spec dd{margin:0;padding:11px 0;border-bottom:1px solid var(--line);font:13px/1.5 var(--mono)}
+.spec dt{color:var(--mut);letter-spacing:.14em;text-transform:uppercase;font-size:12px}
+.man p{max-width:58ch;color:#c9c9c4;font:15px/1.75 var(--mono);margin:0 0 16px}
+.man p.lead{font:700 clamp(20px,2.4vw,27px)/1.25 var(--head);color:#f4f4f0;text-transform:uppercase;letter-spacing:.01em}
+details{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;list-style:none;padding:15px 0;font:700 15px var(--head);letter-spacing:.1em;text-transform:uppercase;color:#f4f4f0}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+";display:inline-block;width:1.6em;color:var(--acc)}
+details[open] summary::before{content:"\2212"}
+details p{margin:0 0 16px 1.6em;max-width:62ch;color:#b9b9b4;font:14px/1.7 var(--mono)}
+kbd{border:1px solid #4a4a45;padding:0 6px;color:var(--ink);font:12px var(--mono)}
+code{color:var(--ink);background:#17171a;padding:1px 5px;font:13px var(--mono)}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;padding:30px 0 64px;font:12px/1.9 var(--mono);color:var(--mut)}
+.foot a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:#4a4a45}
+.foot a:hover{color:var(--ink);text-decoration-color:var(--acc)}
+.foot .col{display:flex;flex-direction:column}
+@media(max-width:820px){.grid{grid-template-columns:1fr;gap:26px}pre.skull,pre.reaper{font-size:clamp(4px,2.1vw,11px)}.spec{grid-template-columns:120px 1fr}.btn{min-width:0;width:100%}}
+@media(prefers-reduced-motion:reduce){.logo,.logo::before,.logo::after,.btn,.vid a{animation:none;transition:none}}
 </style>
 </head>
 <body>
 <canvas id="bg" aria-hidden="true"></canvas>
 <div class="scan" aria-hidden="true"></div>
-<main class="wrap">
+<header class="wrap">
 <div class="rule" aria-hidden="true">░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░</div>
 <h1 class="logo" data-text="R00T_ACCS">R00T_ACCS</h1>
 <div class="rule" aria-hidden="true">░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░</div>
@@ -98,56 +102,77 @@ footer a:hover{color:var(--pink);border-color:var(--pink)}
 <p class="sub">W E &nbsp; O W N &nbsp; T H E &nbsp; N I G H T</p>
 
 <div id="scroller" aria-hidden="true"><span id="sc"></span></div>
+</header>
 
-<div class="cta">
-  <a class="btn dl" href="https://github.com/{{REPO}}/releases/latest/download/R00T_ACCS.exe" rel="noopener">&#9654; Download R00T_ACCS.exe<small>Windows 10/11 &middot; {{EXESIZE}} &middot; no install</small></a>
-  <a class="btn af" href="https://github.com/{{REPO}}" rel="noopener">Are you afraid?<small>source code &amp; build it yourself</small></a>
-</div>
-<p class="hint">double-click. goes fullscreen. turn the volume up.</p>
+<main class="panel"><div class="in">
 
-<div class="gal">
-  <figure><img src="img/shot_access.jpg" alt="ACCESS GRANTED, drop one" loading="lazy" width="1280" height="720"><figcaption><span>0:49</span><span>the drop</span></figcaption></figure>
-  <figure><img src="img/shot_glass.jpg" alt="shattering crystal glass with inverted type" loading="lazy" width="1280" height="720"><figcaption><span>2:08</span><span>break the glass</span></figcaption></figure>
-  <figure><img src="img/shot_moon.jpg" alt="moonrise over the neon grid" loading="lazy" width="1280" height="720"><figcaption><span>2:55</span><span>night</span></figcaption></figure>
-</div>
+<section class="sec grid">
+  <div>
+    <p class="kick">// 01 &mdash; release</p>
+    <h2 class="big">The picture<br>is code.</h2>
+    <p class="lede">R00T_ACCS is a real-time demo. A clean synthwave drive gets hacked by the drops of its own soundtrack. There is no video inside: every pixel is computed live on your GPU.</p>
+    <div class="cta">
+      <a class="btn dl" href="https://github.com/{{REPO}}/releases/latest/download/R00T_ACCS.exe" rel="noopener">Download R00T_ACCS.exe<small>Windows 10/11 &middot; {{EXESIZE}} &middot; no install</small></a>
+      <a class="btn" href="https://github.com/{{REPO}}" rel="noopener">Are you afraid?<small>source code &amp; build it yourself</small></a>
+    </div>
+    <p class="hint">double-click &middot; goes fullscreen &middot; turn the volume up</p>
+  </div>
+  <pre class="ascii skull" aria-hidden="true">{{SKULL}}</pre>
+</section>
 
-{{YOUTUBE_BLOCK}}
+<section class="sec">
+  <div class="sh"><span>02 &mdash; capture</span><span>3 frames</span></div>
+  <div class="gal">
+    <figure><img src="img/shot_access.jpg" alt="ACCESS GRANTED, drop one" loading="lazy" width="1280" height="720"><figcaption><span>0:49</span><span>the drop</span></figcaption></figure>
+    <figure><img src="img/shot_glass.jpg" alt="shattering crystal glass with inverted type" loading="lazy" width="1280" height="720"><figcaption><span>2:08</span><span>break the glass</span></figcaption></figure>
+    <figure><img src="img/shot_moon.jpg" alt="moonrise over the neon grid" loading="lazy" width="1280" height="720"><figcaption><span>2:55</span><span>night</span></figcaption></figure>
+  </div>
+  {{YOUTUBE_BLOCK}}
+</section>
 
-<section class="box"><h2>RELEASE INFO</h2><div class="in">
-  <div class="row"><span class="k">RELEASE</span><span class="d"></span><span class="v">R00T_ACCS-WIN64-REALTIME.DEMO-hodiloves</span></div>
-  <div class="row"><span class="k">TYPE</span><span class="d"></span><span class="v">real-time demo / cracktro-style intro</span></div>
-  <div class="row"><span class="k">PLATFORM</span><span class="d"></span><span class="v">Windows 10/11 x64 &middot; OpenGL 3.3+ GPU</span></div>
-  <div class="row"><span class="k">TRACK</span><span class="d"></span><span class="v">"We Own the Night" &middot; 3:00 &middot; 180 BPM</span></div>
-  <div class="row"><span class="k">FORMAT</span><span class="d"></span><span class="v">1 x EXE. no installer. no serial. no keygen.</span></div>
-  <div class="row"><span class="k">PROTECTION</span><span class="d"></span><span class="v pink">none. every pixel is computed live on YOUR gpu</span></div>
-  <div class="row"><span class="k">VERSION</span><span class="d"></span><span class="v">{{VERSION}}</span></div>
-</div></section>
+<section class="sec">
+  <div class="sh"><span>03 &mdash; spec sheet</span><span>v{{VERSION}}</span></div>
+  <dl class="spec">
+    <dt>Release</dt><dd>R00T_ACCS-WIN64-REALTIME.DEMO-hodiloves</dd>
+    <dt>Type</dt><dd>real-time demo / cracktro-style intro</dd>
+    <dt>Platform</dt><dd>Windows 10/11 x64 &middot; OpenGL 3.3+ GPU</dd>
+    <dt>Track</dt><dd>&ldquo;We Own the Night&rdquo; &middot; 3:00 &middot; 180 BPM</dd>
+    <dt>Format</dt><dd>1 x EXE &middot; no installer &middot; no serial &middot; no keygen</dd>
+    <dt>Protection</dt><dd>none. every pixel is computed live on your gpu</dd>
+    <dt>License</dt><dd>MIT (code) &middot; music &amp; art &copy; hodiloves</dd>
+  </dl>
+</section>
 
-<section class="box"><h2>CRACKER NOTES</h2><div class="in">
-  <p>Nothing was cracked in the making of this release. The only thing that got hacked is a perfectly good synthwave sunset.</p>
-  <p class="dim">It started as a vertical music video. Some people said it was &ldquo;just AI&rdquo;. It is not. The music and the sprites are AI-made; the <span class="ye">picture</span> is a program: GLSL shaders, an ASCII post-pass, raymarched glass and a type engine that slams on the real kick drums. This exe is that program, running live, synced to the audio clock, on whatever display you have.</p>
-</div></section>
+<section class="sec grid man">
+  <pre class="ascii reaper" aria-hidden="true">{{REAPER}}</pre>
+  <div>
+    <p class="kick">// 04 &mdash; manifest</p>
+    <p class="lead">Nothing was cracked in the making of this release. The only thing that got hacked is a perfectly good synthwave sunset.</p>
+    <p>It started as a vertical music video. Some people said it was &ldquo;just AI&rdquo;. It is not. The music and the sprites are AI-made; the picture is a program: GLSL shaders, an ASCII post-pass, raymarched glass and a type engine that slams on the real kick drums.</p>
+    <p>This exe is that program, running live, synced to the audio clock, on whatever display you have.</p>
+  </div>
+</section>
 
-<section class="box"><h2>F.A.Q.</h2><div class="in">
-  <details><summary>&gt; is it a virus?</summary><p>No. It is an unsigned PyInstaller exe, which some antivirus tools and Windows SmartScreen flag by reflex. Every line of source is in the repo, the build is a single script, and the release page lists the SHA-256 of the exe. Don't trust it? Build it yourself, or run it from source.</p></details>
-  <details><summary>&gt; what do I need?</summary><p>Windows 10/11 and a GPU with OpenGL 3.3 (anything from the last decade). It adapts to your screen: 16:9, ultrawide, even a rotated monitor. Slow GPU? Press <kbd>-</kbd> or start it with <code>--scale 0.5</code>.</p></details>
-  <details><summary>&gt; controls?</summary><p><kbd>Esc</kbd> quit &middot; <kbd>Space</kbd> pause &middot; <kbd>&larr;</kbd><kbd>&rarr;</kbd> seek &plusmn;10s &middot; <kbd>R</kbd> restart &middot; <kbd>F</kbd> fullscreen &middot; <kbd>F12</kbd> screenshot &middot; <kbd>-</kbd><kbd>=</kbd> render scale. In the credits press <kbd>1</kbd>-<kbd>4</kbd> to open the links.</p></details>
-  <details><summary>&gt; can I render it to a video?</summary><p>Yes. <code>R00T_ACCS.exe --export out.mp4 --res 1920x1080</code> (needs ffmpeg on PATH). Use <code>--res 1080x1920</code> for the vertical cut. The picture is a pure function of time, so exports are frame-exact.</p></details>
-</div></section>
+<section class="sec">
+  <div class="sh"><span>05 &mdash; f.a.q.</span><span>4 entries</span></div>
+  <details><summary>Is it a virus?</summary><p>No. It is an unsigned PyInstaller exe, which some antivirus tools and Windows SmartScreen flag by reflex. Every line of source is in the repo, the build is a single script, and each release lists the SHA-256 of the exe. Don't trust it? Build it yourself, or run it from source.</p></details>
+  <details><summary>What do I need?</summary><p>Windows 10/11 and a GPU with OpenGL 3.3 (anything from the last decade). It adapts to your screen: 16:9, ultrawide, even a rotated monitor. Slow GPU? Press <kbd>-</kbd> or start it with <code>--scale 0.5</code>.</p></details>
+  <details><summary>Controls?</summary><p><kbd>Esc</kbd> quit &middot; <kbd>Space</kbd> pause &middot; <kbd>&larr;</kbd> <kbd>&rarr;</kbd> seek &plusmn;10s &middot; <kbd>R</kbd> restart &middot; <kbd>F</kbd> fullscreen &middot; <kbd>F12</kbd> screenshot &middot; <kbd>-</kbd> <kbd>=</kbd> render scale. In the credits press <kbd>1</kbd>-<kbd>4</kbd> to open the links.</p></details>
+  <details><summary>Can I render it to a video?</summary><p>Yes. <code>R00T_ACCS.exe --export out.mp4 --res 1920x1080</code> (needs ffmpeg on PATH). Use <code>--res 1080x1920</code> for the vertical cut. The picture is a pure function of time, so exports are frame-exact.</p></details>
+</section>
 
-<footer>
-  <div class="rule" aria-hidden="true">░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░</div>
-  <p>music: hodiloves (made with Suno) &middot; code: hodiloves + Claude &middot; sprites &amp; dancers: fal.ai</p>
-  <p>
+<footer class="foot">
+  <div class="col"><span>music: hodiloves (made with Suno)</span><span>code: hodiloves + Claude</span><span>sprites &amp; dancers: fal.ai</span><span>keep the scene alive.</span></div>
+  <div class="col">
     <a href="https://www.instagram.com/hodiloves/" rel="noopener">instagram</a>
     <a href="https://www.tiktok.com/@hodiloves" rel="noopener">tiktok</a>
     <a href="https://www.youtube.com/@hodilovestoo" rel="noopener">youtube</a>
     <a href="https://suno.com/@hodiloves" rel="noopener">suno</a>
     <a href="https://github.com/{{REPO}}" rel="noopener">source</a>
-  </p>
-  <p>keep the scene alive.</p>
+  </div>
 </footer>
-</main>
+
+</div></main>
 
 <script>
 (function(){
