@@ -11,8 +11,20 @@
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#09090b">
 <link rel="icon" href="favicon.ico">
-<script defer src="https://analytics.esyfy.hu/script.js" data-website-id="73d44031-4e1d-4fd4-bbc5-b529431b6798"></script>
-<script defer src="https://analytics.esyfy.hu/recorder.js" data-website-id="73d44031-4e1d-4fd4-bbc5-b529431b6798"></script>
+<style>
+#consent{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--pbg);border-top:2px solid var(--ink);padding:14px 16px;display:none;font:12px/1.7 var(--mono);color:var(--ink)}
+#consent.show{display:block}
+#consent .in{max-width:1000px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;justify-content:space-between}
+#consent p{margin:0;flex:1 1 380px;color:var(--mut)}
+#consent b{color:var(--ink)}
+#consent .bt{display:flex;gap:10px}
+#consent button{font:800 13px var(--head);letter-spacing:.1em;text-transform:uppercase;padding:9px 18px 8px;border:2px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+#consent button:hover,#consent button:focus-visible{background:var(--ink);color:var(--pbg);outline:none}
+#consent button.ok{border-color:var(--acc)}
+#consent button.ok:hover,#consent button.ok:focus-visible{background:var(--acc);color:var(--pbg)}
+.linkbtn{background:none;border:0;padding:0;font:inherit;color:inherit;text-decoration:underline;text-underline-offset:3px;text-decoration-color:#4a4a45;cursor:pointer}
+.linkbtn:hover{color:var(--ink);text-decoration-color:var(--acc)}
+</style>
 <style>
 :root{--bg:#09090b;--cyan:#00e5ff;--pink:#ff2d95;--yellow:#ffe14a;--violet:#8a2bff;--dim:#7d8aa8;
   --ink:#e8e8e4;--mut:#8d8d88;--line:#33332f;--pbg:#09090b;--acc:#ff2d95;
@@ -268,8 +280,15 @@ code{color:var(--ink);background:#17171a;padding:1px 5px;font:13px var(--mono)}
     <a href="https://www.youtube.com/@hodilovestoo" rel="noopener">youtube</a>
     <a href="https://suno.com/@hodiloves" rel="noopener">suno</a>
     <a href="https://github.com/dhodvogner/R00T_ACCS" rel="noopener">source</a>
+    <button class="linkbtn" id="privacy-btn" type="button">privacy</button>
   </div>
 </footer>
+<div id="consent" role="dialog" aria-label="Privacy notice">
+  <div class="in">
+    <p><b>// privacy.</b> with your ok, this page records anonymous visit stats and your session (clicks, scrolling) so we can see how people use it. that's all: nothing is sold, shared or used for ads. decline and nothing is recorded.</p>
+    <div class="bt"><button type="button" id="c-no">decline</button><button type="button" id="c-yes" class="ok">accept</button></div>
+  </div>
+</div>
 
 </div></main>
 
@@ -317,6 +336,29 @@ code{color:var(--ink);background:#17171a;padding:1px 5px;font:13px var(--mono)}
     requestAnimationFrame(scroll);
   }
   requestAnimationFrame(scroll);
+})();
+</script>
+<script>
+(function(){
+  var KEY = 'r00t-consent', ID = '73d44031-4e1d-4fd4-bbc5-b529431b6798', loaded = false;
+  var box = document.getElementById('consent');
+  function get(){ try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function set(v){ try { localStorage.setItem(KEY, v); } catch (e) {} }
+  function load(){
+    if (loaded) return; loaded = true;
+    ['script.js', 'recorder.js'].forEach(function(f){
+      var s = document.createElement('script'); s.defer = true;
+      s.src = 'https://analytics.esyfy.hu/' + f; s.setAttribute('data-website-id', ID);
+      document.head.appendChild(s);
+    });
+  }
+  function show(){ box.classList.add('show'); }
+  function hide(){ box.classList.remove('show'); }
+  document.getElementById('c-yes').onclick = function(){ set('yes'); hide(); load(); };
+  document.getElementById('c-no').onclick = function(){ set('no'); hide(); if (loaded) location.reload(); };
+  document.getElementById('privacy-btn').onclick = show;
+  var c = get();
+  if (c === 'yes') load(); else if (c !== 'no') show();
 })();
 </script>
 </body>
