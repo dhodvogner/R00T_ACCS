@@ -155,6 +155,28 @@ L += box("B U I L D   I T   Y O U R S E L F", [
     "python tools\\bake_features.py track.mp3   (re-bake audio analysis)",
 ])
 L.append("")
+L += box("M A C   /   L I N U X   ( U N T E S T E D )", [
+    "No exe for you, sorry. It runs from source, but nobody has tried it off",
+    "Windows yet: expect rough edges and please report what breaks.",
+    "",
+    "needs: Python 3.10+, a GPU/driver with OpenGL 3.3 core, ffmpeg (export)",
+    "",
+    "git clone <this repo> && cd r00t_accs",
+    "python3 -m venv .venv && source .venv/bin/activate",
+    "pip install -r requirements.txt",
+    "python r00t_accs.py --windowed",
+    "",
+    "linux : sudo apt install python3-venv libsdl2-2.0-0 ffmpeg   (or your",
+    "        distro's equivalent). Wayland trouble? SDL_VIDEODRIVER=x11",
+    "mac   : brew install python ffmpeg. macOS only offers GL 3.3 as a",
+    "        forward-compatible core context, so if context creation fails,",
+    "        start with the gl_set_attribute calls in r00t/player.py",
+    "fonts : the type engine loads Windows fonts (Bahnschrift, Consolas...)",
+    "        and falls back to a plain default. It should still run, but the",
+    "        lettering will not look like the video. Point kt_core.py and",
+    "        typo.py (in r00t/) at any bold condensed / mono .ttf.",
+])
+L.append("")
 L += box("C O N T A C T", [
     "instagram.com/hodiloves          tiktok.com/@hodiloves",
     "youtube.com/@hodilovestoo        suno.com/@hodiloves",

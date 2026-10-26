@@ -116,6 +116,30 @@
 ศออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออผ
 
 ษออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออป
+บฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐ M A C   /   L I N U X   ( U N T E S T E D ) ฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐบ
+ฬออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออน
+บ No exe for you, sorry. It runs from source, but nobody has tried it off    บ
+บ Windows yet: expect rough edges and please report what breaks.             บ
+บ                                                                            บ
+บ needs: Python 3.10+, a GPU/driver with OpenGL 3.3 core, ffmpeg (export)    บ
+บ                                                                            บ
+บ git clone <this repo> && cd r00t_accs                                      บ
+บ python3 -m venv .venv && source .venv/bin/activate                         บ
+บ pip install -r requirements.txt                                            บ
+บ python r00t_accs.py --windowed                                             บ
+บ                                                                            บ
+บ linux : sudo apt install python3-venv libsdl2-2.0-0 ffmpeg   (or your      บ
+บ         distro's equivalent). Wayland trouble? SDL_VIDEODRIVER=x11         บ
+บ mac   : brew install python ffmpeg. macOS only offers GL 3.3 as a          บ
+บ         forward-compatible core context, so if context creation fails,     บ
+บ         start with the gl_set_attribute calls in r00t/player.py            บ
+บ fonts : the type engine loads Windows fonts (Bahnschrift, Consolas...)     บ
+บ         and falls back to a plain default. It should still run, but the    บ
+บ         lettering will not look like the video. Point kt_core.py and       บ
+บ         typo.py (in r00t/) at any bold condensed / mono .ttf.              บ
+ศออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออผ
+
+ษออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออป
 บฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐ C O N T A C T ฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐฐบ
 ฬออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออน
 บ instagram.com/hodiloves          tiktok.com/@hodiloves                     บ
