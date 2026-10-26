@@ -61,14 +61,26 @@ A real-time, full-screen synthwave-gets-hacked demo. Every pixel is computed liv
 ╔════════════════════════════════════════════════════════════════════════════╗
 ║░░░░░░░░░░░░░░░░░░░░░░░░ C R A C K E R   N O T E S ░░░░░░░░░░░░░░░░░░░░░░░░░║
 ╠════════════════════════════════════════════════════════════════════════════╣
-║ Nothing was cracked in the making of this release.                         ║
-║ The only thing that got hacked is a perfectly good synthwave sunset.       ║
+║ A LOVE LETTER TO THE DEMOSCENE.                                            ║
 ║                                                                            ║
-║ It started as a vertical music video. People asked if it was 'just AI'.    ║
-║ It is not. The music and the sprites are AI-made; the PICTURE is a         ║
-║ program: GLSL shaders, ASCII post-pass, raymarched glass, a type engine    ║
-║ that slams on the real kick drums. This exe is that program, running       ║
-║ live, synced to the audio clock, on whatever display you have.             ║
+║ What is the demoscene? A computer art subculture that grew out of the      ║
+║ cracktros of the 1980s: the animated intros crackers stuck on pirated      ║
+║ games to sign their work. Soon people made them for their own sake. A DEMO ║
+║ is a program that plays an audiovisual show in real time: no video file,   ║
+║ just code, math and music, often squeezed into a few kilobytes and judged  ║
+║ at parties by other coders and artists.  (en.wikipedia.org/wiki/Demoscene) ║
+║                                                                            ║
+║ I have always been fascinated by computer generated imagery, and to me the ║
+║ demoscene is its highest form: the place where code meets art. A demo is   ║
+║ never a recording. It exists for a fraction of a second at a time, in your ║
+║ GPU's memory, and then it is gone and drawn again.                         ║
+║                                                                            ║
+║ Yes, AI helped to make this: the music, the sprites and much of the code.  ║
+║ It is still my love letter to everyone who pioneered this scene, and       ║
+║ everyone who keeps it alive. Nothing was cracked here. The only thing that ║
+║ got hacked is a perfectly good synthwave sunset.                           ║
+║                                                                            ║
+║ -- hodiloves                                                               ║
 ╚════════════════════════════════════════════════════════════════════════════╝
 
 ╔════════════════════════════════════════════════════════════════════════════╗
