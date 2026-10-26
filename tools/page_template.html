@@ -9,21 +9,21 @@
 <meta property="og:description" content="A clean synthwave drive gets hacked by the drops. One exe, every pixel computed live on your GPU.">
 <meta property="og:image" content="https://{{OWNER}}.github.io/{{NAME}}/img/og.jpg">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#0b0618">
+<meta name="theme-color" content="#09090b">
 <link rel="icon" href="favicon.ico">
 <style>
-:root{--bg:#0b0618;--cyan:#00e5ff;--pink:#ff2d95;--yellow:#ffe14a;--violet:#8a2bff;--dim:#7d8aa8;
+:root{--bg:#09090b;--cyan:#00e5ff;--pink:#ff2d95;--yellow:#ffe14a;--violet:#8a2bff;--dim:#7d8aa8;
   --ink:#e8e8e4;--mut:#8d8d88;--line:#33332f;--pbg:#09090b;--acc:#ff2d95;
   --head:"Bahnschrift","Arial Narrow","Helvetica Neue",Arial,sans-serif;--mono:"Cascadia Mono",Consolas,"SFMono-Regular",Menlo,"Courier New",monospace}
 *{box-sizing:border-box}
 html{background:var(--bg)}
-body{margin:0;color:var(--cyan);font:16px/1.5 var(--mono);min-height:100vh}
+body{margin:0;color:var(--ink);font:16px/1.5 var(--mono);min-height:100vh}
 #bg{position:fixed;inset:0;width:100%;height:100%;z-index:-2}
 .scan{position:fixed;inset:0;z-index:50;pointer-events:none;
   background:repeating-linear-gradient(to bottom,rgba(0,0,0,.22) 0,rgba(0,0,0,.22) 1px,transparent 1px,transparent 3px),
   radial-gradient(ellipse at center,transparent 60%,rgba(0,0,0,.5) 100%)}
 .wrap{max-width:920px;margin:0 auto;padding:28px 16px 0}
-.rule{color:var(--violet);overflow:hidden;white-space:nowrap;text-align:center}
+.rule{color:var(--mut);overflow:hidden;white-space:nowrap;text-align:center}
 pre{margin:0}
 /* logo */
 .logo{margin:6px 0 0;text-align:center;font-weight:900;font-size:clamp(46px,13.5vw,132px);line-height:1.05;letter-spacing:.06em;position:relative;
@@ -34,13 +34,12 @@ pre{margin:0}
 @keyframes lg1{0%,86%{clip-path:inset(0 0 62% 0)}88%{clip-path:inset(20% 0 40% 0);transform:translate(-9px,0)}90%{clip-path:inset(55% 0 20% 0);transform:translate(6px,0)}92%,100%{clip-path:inset(0 0 62% 0)}}
 @keyframes lg2{0%,80%{clip-path:inset(62% 0 0 0)}82%{clip-path:inset(30% 0 35% 0);transform:translate(10px,0)}84%{clip-path:inset(75% 0 5% 0);transform:translate(-6px,0)}86%,100%{clip-path:inset(62% 0 0 0)}}
 @keyframes flick{0%,92%,100%{opacity:1}93%{opacity:.78}94%{opacity:1}96%{opacity:.85}97%{opacity:1}}
-.tag{text-align:center;color:var(--cyan);margin:14px 0 4px;letter-spacing:.06em}
-.sub{text-align:center;color:var(--dim);letter-spacing:.5em;font-size:13px}
+.tag{text-align:center;color:var(--ink);margin:14px 0 4px;letter-spacing:.06em}
+.sub{text-align:center;color:var(--mut);letter-spacing:.5em;font-size:13px}
 
 /* sine scroller */
-#scroller{position:relative;height:56px;overflow:hidden;margin:18px 0 6px;border-top:1px solid #2a1d4a;border-bottom:1px solid #2a1d4a;
-  background:linear-gradient(90deg,transparent,rgba(138,43,255,.18),transparent)}
-#scroller span{position:absolute;top:10px;left:0;font-weight:700;font-size:26px;white-space:pre;text-shadow:0 0 8px currentColor}
+#scroller{position:relative;height:56px;overflow:hidden;margin:18px 0 6px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+#scroller span{position:absolute;top:10px;left:0;font-weight:700;font-size:26px;white-space:pre}
 
 
 /* ---------- below the header: monochrome brutalist ---------- */
@@ -184,16 +183,14 @@ code{color:var(--ink);background:#17171a;padding:1px 5px;font:13px var(--mono)}
   addEventListener('resize', resize); resize();
   function bars(t){
     for (var i = 0; i < 6; i++){
-      var y = H*.62 + Math.sin(t*.0009 + i*.55)*H*.12 + i*7, hue = [330,300,270,200,180,300][i];
+      var y = H*.62 + Math.sin(t*.0009 + i*.55)*H*.12 + i*7, hue = 0;
       var g = cx.createLinearGradient(0, y-9, 0, y+9);
-      g.addColorStop(0, 'hsla('+hue+',100%,55%,0)'); g.addColorStop(.5, 'hsla('+hue+',100%,65%,.28)'); g.addColorStop(1, 'hsla('+hue+',100%,55%,0)');
+      g.addColorStop(0, 'rgba(255,255,255,0)'); g.addColorStop(.5, 'rgba(255,255,255,.06)'); g.addColorStop(1, 'rgba(255,255,255,0)');
       cx.fillStyle = g; cx.fillRect(0, y-9, W, 18);
     }
   }
   function frame(t){
-    cx.fillStyle = '#0b0618'; cx.fillRect(0, 0, W, H);
-    var sg = cx.createLinearGradient(0, H*.45, 0, H); sg.addColorStop(0, 'rgba(255,45,149,0)'); sg.addColorStop(1, 'rgba(138,43,255,.22)');
-    cx.fillStyle = sg; cx.fillRect(0, H*.45, W, H*.55);
+    cx.fillStyle = '#09090b'; cx.fillRect(0, 0, W, H);
     for (var i = 0; i < stars.length; i++){ var s = stars[i];
       if (!reduce){ s.x -= s.z*.25; if (s.x < 0) s.x = W; }
       cx.fillStyle = 'rgba(255,255,255,' + (.25 + s.z*.6) + ')'; cx.fillRect(s.x, s.y, s.z*1.8, s.z*1.8); }
@@ -205,8 +202,8 @@ code{color:var(--ink);background:#17171a;padding:1px 5px;font:13px var(--mono)}
   /* ---------- sine scroller ---------- */
   var msg = '   ...   R00T_ACCS   ...   a real-time demo   ...   every pixel computed live on your gpu   ...   no installer, no serial, no mercy   ...   greetz to the scene   ...   keep it alive   ...   ';
   var sc = document.getElementById('sc'), box = document.getElementById('scroller');
-  var cols = ['#00e5ff', '#ff2d95', '#ffe14a', '#8a2bff'];
-  if (reduce){ sc.textContent = 'R00T_ACCS // a real-time demo'; sc.style.color = '#ff2d95'; sc.style.left = '16px'; return; }
+  var cols = ['#e8e8e4', '#8d8d88'];
+  if (reduce){ sc.textContent = 'R00T_ACCS // a real-time demo'; sc.style.color = '#e8e8e4'; sc.style.left = '16px'; return; }
   sc.textContent = ''; var letters = [];
   for (var i = 0; i < msg.length; i++){ var e = document.createElement('span'); e.textContent = msg[i]; e.style.color = cols[i % cols.length]; box.appendChild(e); letters.push(e); }
   box.removeChild(sc);
