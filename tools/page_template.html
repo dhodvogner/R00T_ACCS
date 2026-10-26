@@ -11,6 +11,7 @@
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#09090b">
 <link rel="icon" href="favicon.ico">
+<script defer src="https://analytics.esyfy.hu/script.js" data-website-id="73d44031-4e1d-4fd4-bbc5-b529431b6798"></script>
 <style>
 #consent{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--pbg);border-top:2px solid var(--ink);padding:14px 16px;display:none;font:12px/1.7 var(--mono);color:var(--ink)}
 #consent.show{display:block}
@@ -190,7 +191,7 @@ code{color:var(--ink);background:#17171a;padding:1px 5px;font:13px var(--mono)}
 </footer>
 <div id="consent" role="dialog" aria-label="Privacy notice">
   <div class="in">
-    <p><b>// privacy.</b> with your ok, this page records anonymous visit stats and your session (clicks, scrolling) so we can see how people use it. that's all: nothing is sold, shared or used for ads. decline and nothing is recorded.</p>
+    <p><b>// privacy.</b> this page counts visits (anonymous stats). with your ok it also records your session (clicks, scrolling) so we can see how people use it. nothing is sold, shared or used for ads. decline and no session is recorded.</p>
     <div class="bt"><button type="button" id="c-no">decline</button><button type="button" id="c-yes" class="ok">accept</button></div>
   </div>
 </div>
@@ -251,7 +252,7 @@ code{color:var(--ink);background:#17171a;padding:1px 5px;font:13px var(--mono)}
   function set(v){ try { localStorage.setItem(KEY, v); } catch (e) {} }
   function load(){
     if (loaded) return; loaded = true;
-    ['script.js', 'recorder.js'].forEach(function(f){
+    ['recorder.js'].forEach(function(f){
       var s = document.createElement('script'); s.defer = true;
       s.src = 'https://analytics.esyfy.hu/' + f; s.setAttribute('data-website-id', ID);
       document.head.appendChild(s);
@@ -260,7 +261,7 @@ code{color:var(--ink);background:#17171a;padding:1px 5px;font:13px var(--mono)}
   function show(){ box.classList.add('show'); }
   function hide(){ box.classList.remove('show'); }
   document.getElementById('c-yes').onclick = function(){ set('yes'); hide(); load(); };
-  document.getElementById('c-no').onclick = function(){ set('no'); hide(); if (loaded) location.reload(); };
+  document.getElementById('c-no').onclick = function(){ set('no'); hide(); };
   document.getElementById('privacy-btn').onclick = show;
   var c = get();
   if (c === 'yes') load(); else if (c !== 'no') show();
