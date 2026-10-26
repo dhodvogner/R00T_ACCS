@@ -1,0 +1,5 @@
+-r requirements.txt
+pyinstaller
+# only needed by tools/bake_features.py (re-analysing a different track)
+librosa
+scipy

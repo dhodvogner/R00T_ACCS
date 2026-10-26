@@ -1,0 +1,11 @@
+.venv/
+.venv-build/
+build/
+dist/
+*.spec
+__pycache__/
+*.pyc
+screenshots/
+exports/
+bench.json
+r00t_log.txt

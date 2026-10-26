@@ -1,0 +1,40 @@
+name: release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - name: Build R00T_ACCS.exe
+        shell: pwsh
+        run: ./build_exe.ps1
+      - name: SHA-256
+        shell: pwsh
+        run: |
+          $h = (Get-FileHash dist/R00T_ACCS.exe -Algorithm SHA256).Hash.ToLower()
+          "$h  R00T_ACCS.exe" | Out-File -Encoding ascii dist/R00T_ACCS.exe.sha256
+          "SHA-256 of R00T_ACCS.exe: ``$h``" | Out-File -Encoding utf8 notes.md
+      - uses: actions/upload-artifact@v4
+        with:
+          name: R00T_ACCS
+          path: dist/R00T_ACCS.exe
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/R00T_ACCS.exe
+            dist/R00T_ACCS.exe.sha256
+          body_path: notes.md
+          generate_release_notes: true
